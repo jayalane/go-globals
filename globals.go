@@ -84,3 +84,9 @@ func NewGlobal(defaultConfig string) Global {
 
 	return res
 }
+
+// NewLogger returns a new logger that is from github.com/jayalane/go-lll
+func (g Global) NewLogger(name string, defaultLogLevel string) *lll.Lll {
+	ml := lll.Init(name, defaultLogLevel)
+	return &ml
+}
