@@ -40,44 +40,51 @@ func (g *Global) reloadHandler() {
 	}
 }
 
-func NewGlobal(defaultConfig string) Global {
+func NewGlobal(defaultConfig string, doProf bool) Global {
 
 	res := Global{}
 
 	// CPU profile
-	defer profile.Start(profile.ProfilePath(".")).Stop()
-
+	if doProf {
+		defer profile.Start(profile.ProfilePath(".")).Stop()
+	}
+	defaultProfile := "localhost:8888"
+	defaultLogLevel := "all"
 	// config
-	if len(os.Args) > 1 && os.Args[1] == "--dumpConfig" {
-		fmt.Println(defaultConfig)
-		os.Exit(0)
-	}
-	// still config
-	res.Cfg = nil
-	t, err := config.ReadConfig("config.txt", defaultConfig)
-	if err != nil {
-		fmt.Println("Error opening config.txt", err.Error())
-		if res.Cfg == nil {
-			os.Exit(11)
+	if len(defaultConfig) > 0 {
+		if len(os.Args) > 1 && os.Args[1] == "--dumpConfig" {
+			fmt.Println(defaultConfig)
+			os.Exit(0)
 		}
-	}
-	res.Cfg = &t
-	fmt.Println("Config", (*res.Cfg)) // lll isn't up yet
+		// still config
+		res.Cfg = nil
+		t, err := config.ReadConfig("config.txt", defaultConfig)
+		if err != nil {
+			fmt.Println("Error opening config.txt", err.Error())
+			if res.Cfg == nil {
+				os.Exit(11)
+			}
+		}
+		res.Cfg = &t
+		fmt.Println("Config", (*res.Cfg)) // lll isn't up yet
 
+		defaultProfile = (*res.Cfg)["profListen"].StrVal
+		defaultLogLevel = (*res.Cfg)["debugLevel"].StrVal
+
+		// config sig handlers - to enable log levels
+		res.reload = make(chan os.Signal, 2)
+		signal.Notify(res.reload, syscall.SIGHUP)
+		go res.reloadHandler() // to listen to the signal
+
+	}
 	// start the profiler
 	go func() {
-		if len((*res.Cfg)["profListen"].StrVal) > 0 {
-			fmt.Println(http.ListenAndServe((*res.Cfg)["profListen"].StrVal, nil))
+		if len(defaultProfile) > 0 {
+			fmt.Println(http.ListenAndServe(defaultProfile, nil))
 		}
 	}()
-
 	// low level logging (first so everything rotates)
-	res.Ml = lll.Init("MAIN", (*res.Cfg)["debugLevel"].StrVal)
-
-	// config sig handlers - to enable log levels
-	res.reload = make(chan os.Signal, 2)
-	signal.Notify(res.reload, syscall.SIGHUP)
-	go res.reloadHandler() // to listen to the signal
+	res.Ml = lll.Init("MAIN", defaultLogLevel)
 
 	// stats
 	count.InitCounters()
