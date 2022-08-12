@@ -40,7 +40,7 @@ func (g *Global) reloadHandler() {
 	}
 }
 
-func (g Global) NewGlobals(defaultConfig string) Global {
+func NewGlobal(defaultConfig string) Global {
 
 	res := Global{}
 
@@ -75,9 +75,9 @@ func (g Global) NewGlobals(defaultConfig string) Global {
 	res.Ml = lll.Init("MAIN", (*res.Cfg)["debugLevel"].StrVal)
 
 	// config sig handlers - to enable log levels
-	g.reload = make(chan os.Signal, 2)
-	signal.Notify(g.reload, syscall.SIGHUP)
-	go g.reloadHandler() // to listen to the signal
+	res.reload = make(chan os.Signal, 2)
+	signal.Notify(res.reload, syscall.SIGHUP)
+	go res.reloadHandler() // to listen to the signal
 
 	// stats
 	count.InitCounters()
