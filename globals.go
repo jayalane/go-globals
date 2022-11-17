@@ -9,7 +9,7 @@ import (
 	config "github.com/jayalane/go-tinyconfig"
 	"github.com/pkg/profile"
 	"net/http"
-	_ "net/http/pprof"
+	_ "net/http/pprof" // for pprof
 	"os"
 	"os/signal"
 	"sync/atomic"
@@ -17,6 +17,7 @@ import (
 	"unsafe"
 )
 
+// Global has a logger Ml, config Cfg, and handles reloads of config
 type Global struct {
 	Ml            lll.Lll
 	Cfg           *config.Config
@@ -40,6 +41,8 @@ func (g *Global) reloadHandler() {
 	}
 }
 
+// NewGlobal sets up the logger, the profiler, and reads the
+// config
 func NewGlobal(defaultConfig string, doProf bool) Global {
 
 	res := Global{}
