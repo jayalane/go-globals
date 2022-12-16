@@ -41,8 +41,8 @@ func (g *Global) reloadHandler() {
 	}
 }
 
-// NewGlobal sets up the logger, the profiler, and reads the
-// config
+// NewGlobal sets up the logger, the profiler, if doProf is true, and
+// reads the config
 func NewGlobal(defaultConfig string, doProf bool) Global {
 
 	res := Global{}
@@ -56,12 +56,12 @@ func NewGlobal(defaultConfig string, doProf bool) Global {
 	// config
 	if len(defaultConfig) > 0 {
 		if len(os.Args) > 1 && os.Args[1] == "--dumpConfig" {
-			fmt.Println(defaultConfig)
+			fmt.Println("logStdout = false\n" + defaultConfig)
 			os.Exit(0)
 		}
 		// still config
 		res.Cfg = nil
-		t, err := config.ReadConfig("config.txt", defaultConfig)
+		t, err := config.ReadConfig("config.txt", "logStdout = false\n"+defaultConfig)
 		if err != nil {
 			fmt.Println("Error opening config.txt", err.Error())
 			if res.Cfg == nil {
@@ -87,6 +87,9 @@ func NewGlobal(defaultConfig string, doProf bool) Global {
 		}
 	}()
 	// low level logging (first so everything rotates)
+	if res.Cfg != nil && (*res.Cfg)["logStdout"].BoolVal {
+		lll.SetWriter(os.Stdout)
+	}
 	res.Ml = lll.Init("MAIN", defaultLogLevel)
 
 	// stats
