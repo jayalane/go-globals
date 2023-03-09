@@ -3,9 +3,9 @@ module github.com/jayalane/go-globals
 go 1.20
 
 require (
-	github.com/jayalane/go-counter v0.0.0-20230301185725-a03e157cd56f
-	github.com/jayalane/go-lll v0.0.0-20221117191206-0dc3b9c0210c
-	github.com/jayalane/go-tinyconfig v0.0.0-20221117172320-01f26dc93835
+	github.com/jayalane/go-counter v0.0.0-20230309045251-696a3bbcd44e
+	github.com/jayalane/go-lll v0.0.0-20230309045553-4d9872d4d53e
+	github.com/jayalane/go-tinyconfig v0.0.0-20230309045147-8267dc4d6067
 	github.com/pkg/profile v1.7.0
 )
 
