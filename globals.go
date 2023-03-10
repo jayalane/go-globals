@@ -28,6 +28,7 @@ type Global struct {
 func (g *Global) reloadHandler() {
 	for c := range g.reload {
 		g.Ml.La("OK: Got a signal, reloading config", c)
+		oldCfg := g.Cfg
 
 		t, err := config.ReadConfig("config.txt", g.defaultConfig)
 		if err != nil {
@@ -36,6 +37,7 @@ func (g *Global) reloadHandler() {
 		}
 		st := unsafe.Pointer(g.Cfg)
 		atomic.StorePointer(&st, unsafe.Pointer(&t))
+		fmt.Println("Old cfg", oldCfg, "new cfg", g.Cfg, "st", st)
 		fmt.Println("New Config", (*g.Cfg)) // lll isn't up yet
 		lll.SetLevel(&g.Ml, (*g.Cfg)["debugLevel"].StrVal)
 	}
