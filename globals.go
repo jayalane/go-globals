@@ -19,7 +19,7 @@ import (
 
 // Global has a logger Ml, config Cfg, and handles reloads of config
 type Global struct {
-	Ml            lll.Lll
+	Ml            *lll.Lll
 	Cfg           *config.Config
 	defaultConfig string
 	reload        chan os.Signal // to reload config
@@ -107,5 +107,5 @@ func NewGlobal(defaultConfig string, doProf bool) Global {
 // NewLogger returns a new logger that is from github.com/jayalane/go-lll
 func (g Global) NewLogger(name string, defaultLogLevel string) *lll.Lll {
 	ml := lll.Init(name, defaultLogLevel)
-	return &ml
+	return ml
 }

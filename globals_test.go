@@ -88,6 +88,10 @@ func TestSignal(t *testing.T) {
 	g = NewGlobal(`debugLevel = never`, false)
 
 	fmt.Println("Before signal level is", g.Ml.GetLevel())
+	if g.Ml.GetLevel() != 2 {
+		fmt.Println("Test failed, expecting 2")
+		t.Fail()
+	}
 
 	err = writeStringToFile("config.txt", `debugLevel = network
 `)
@@ -109,4 +113,8 @@ func TestSignal(t *testing.T) {
 	}
 	time.Sleep(2 * time.Second)
 	fmt.Println("After signal level is", g.Ml.GetLevel())
+	if g.Ml.GetLevel() != 0 {
+		fmt.Println("Test failed was expecting 0")
+		t.Fail()
+	}
 }
