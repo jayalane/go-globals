@@ -25,21 +25,24 @@ type Global struct {
 	reload        chan os.Signal // to reload config
 }
 
+func (g *Global) updateCfg(newConfig config.Config) {
+	st := (*unsafe.Pointer)(unsafe.Pointer(&g.Cfg))
+	atomic.StorePointer(st, unsafe.Pointer(&newConfig))
+	// g.Cfg = &newConfig
+	g.Ml.SetLevel((*g.Cfg)["debugLevel"].StrVal)
+	fmt.Println("Got level", g.Ml.GetLevel())
+}
+
 func (g *Global) reloadHandler() {
 	for c := range g.reload {
-		g.Ml.La("OK: Got a signal, reloading config", c)
-		oldCfg := g.Cfg
-
+		fmt.Println("OK: Got a signal, reloading config", c)
 		t, err := config.ReadConfig("config.txt", g.defaultConfig)
 		if err != nil {
 			fmt.Println("Error opening config.txt", err.Error())
 			return
 		}
-		st := unsafe.Pointer(g.Cfg)
-		atomic.StorePointer(&st, unsafe.Pointer(&t))
-		fmt.Println("Old cfg", oldCfg, "new cfg", g.Cfg, "st", st)
-		fmt.Println("New Config", (*g.Cfg)) // lll isn't up yet
-		lll.SetLevel(&g.Ml, (*g.Cfg)["debugLevel"].StrVal)
+		fmt.Println("Got a config", t)
+		g.updateCfg(t)
 	}
 }
 
@@ -88,6 +91,7 @@ func NewGlobal(defaultConfig string, doProf bool) Global {
 			fmt.Println(http.ListenAndServe(defaultProfile, nil))
 		}
 	}()
+
 	// low level logging (first so everything rotates)
 	if res.Cfg != nil && (*res.Cfg)["logStdout"].BoolVal {
 		lll.SetWriter(os.Stdout)
