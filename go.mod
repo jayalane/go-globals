@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/jayalane/go-counter v0.0.0-20230310202406-1b6cd6f6120a
-	github.com/jayalane/go-lll v0.0.0-20230314031020-592b0765daee
+	github.com/jayalane/go-lll v0.0.0-20230314183155-914715784288
 	github.com/jayalane/go-tinyconfig v0.0.0-20230309045147-8267dc4d6067
 	github.com/pkg/profile v1.7.0
 )
