@@ -11,8 +11,8 @@ github.com/google/pprof v0.0.0-20211214055906-6f57359322fd/go.mod h1:KgnwoLYCZ8I
 github.com/ianlancetaylor/demangle v0.0.0-20210905161508-09a460cdf81d/go.mod h1:aYm2/VgdVmcIU8iMfdMvDMsRAQjcfZSKFby6HOFvi/w=
 github.com/jayalane/go-counter v0.0.0-20230310202406-1b6cd6f6120a h1:nTLXfd+hCAwD7x8te09b6IbY8ruEEtgXjqTFEfN3Ou4=
 github.com/jayalane/go-counter v0.0.0-20230310202406-1b6cd6f6120a/go.mod h1:Ut9OSn2wcaePsn+ei3+IA7hixur5szDW3zAkin6ZaoQ=
-github.com/jayalane/go-lll v0.0.0-20230314183155-914715784288 h1:+gEfnEM1caWOPUOG3OOL4I0OxSOBozjcnbgOAyxip4U=
-github.com/jayalane/go-lll v0.0.0-20230314183155-914715784288/go.mod h1:6bDxdygGJ3kiSDZdu9NrqtTaWJ5diCB+Wa4jyzPnHt8=
+github.com/jayalane/go-lll v0.0.0-20230319184427-bcaed09a676c h1:sp6t0nMVxgMKw16dvalCOQPoQJ+Cr9CiOQzP+HsP0EQ=
+github.com/jayalane/go-lll v0.0.0-20230319184427-bcaed09a676c/go.mod h1:6bDxdygGJ3kiSDZdu9NrqtTaWJ5diCB+Wa4jyzPnHt8=
 github.com/jayalane/go-tinyconfig v0.0.0-20230309045147-8267dc4d6067 h1:TsiTMXMKr02Lt66uoumDtTHy5CPAt075X12qaYMoUvc=
 github.com/jayalane/go-tinyconfig v0.0.0-20230309045147-8267dc4d6067/go.mod h1:0tDlc/559PTen8SyksmTK1G9SPXxNMf1U97r22RAVHo=
 github.com/jonboulle/clockwork v0.3.0 h1:9BSCMi8C+0qdApAp4auwX0RkLGUjs956h0EkuQymUhg=
