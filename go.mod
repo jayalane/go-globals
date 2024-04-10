@@ -1,9 +1,9 @@
 module github.com/jayalane/go-globals
 
-go 1.21
+go 1.22
 
 require (
-	github.com/jayalane/go-counter v0.0.0-20231116033401-bed7d8dc9a78
+	github.com/jayalane/go-counter v0.0.0-20240410193829-99bf657a181c
 	github.com/jayalane/go-lll v0.0.0-20231116033444-c12e53c5e47a
 	github.com/jayalane/go-tinyconfig v0.0.0-20231116033324-ab055368d286
 	github.com/pkg/profile v1.7.0
