@@ -1,6 +1,6 @@
 module github.com/jayalane/go-globals
 
-go 1.22
+go 1.22.4
 
 require (
 	github.com/jayalane/go-counter v0.0.0-20240701011447-c401b9516859
