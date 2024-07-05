@@ -9,8 +9,8 @@ github.com/felixge/fgprof v0.9.3/go.mod h1:RdbpDgzqYVh/T9fPELJyV7EYJuHB55UTEULNu
 github.com/google/pprof v0.0.0-20211214055906-6f57359322fd h1:1FjCyPC+syAzJ5/2S8fqdZK1R22vvA0J7JZKcuOIQ7Y=
 github.com/google/pprof v0.0.0-20211214055906-6f57359322fd/go.mod h1:KgnwoLYCZ8IQu3XUZ8Nc/bM9CCZFOyjUNOSygVozoDg=
 github.com/ianlancetaylor/demangle v0.0.0-20210905161508-09a460cdf81d/go.mod h1:aYm2/VgdVmcIU8iMfdMvDMsRAQjcfZSKFby6HOFvi/w=
-github.com/jayalane/go-counter v0.0.0-20240702202244-b8ff926e735a h1:mzK1++DDzLlG/YCur9HXjNhHqhPRIzXLcl00gVhRdH0=
-github.com/jayalane/go-counter v0.0.0-20240702202244-b8ff926e735a/go.mod h1:UljiSOhE0XxrhKIKw8CvrtVQo4cV71/08RzTDjYxdmk=
+github.com/jayalane/go-counter v0.0.0-20240705210921-ef55ebe2f756 h1:hOgyVo4XSFAf+21AVDw9wsDpuq/gbpZYgutp7NlL5r8=
+github.com/jayalane/go-counter v0.0.0-20240705210921-ef55ebe2f756/go.mod h1:UljiSOhE0XxrhKIKw8CvrtVQo4cV71/08RzTDjYxdmk=
 github.com/jayalane/go-lll v0.0.0-20240701032621-2f3552fc55a4 h1:Ma8spEciuPvSHlbrv3yvbrAFvAuIojZFgzwtWpM2BQU=
 github.com/jayalane/go-lll v0.0.0-20240701032621-2f3552fc55a4/go.mod h1:DEnfz7H4PilkrCTprFyxon3Xfm7KIRvuKeEt9sM9bLU=
 github.com/jayalane/go-tinyconfig v0.0.0-20231116033324-ab055368d286 h1:bW475arxYTwOQHRxI9W2KEWtbAp5D9iErdsjzEQ0A5w=
