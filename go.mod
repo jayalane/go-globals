@@ -4,8 +4,8 @@ go 1.22.5
 
 require (
 	github.com/jayalane/go-counter v0.0.0-20240705210921-ef55ebe2f756
-	github.com/jayalane/go-lll v0.0.0-20240701032621-2f3552fc55a4
-	github.com/jayalane/go-tinyconfig v0.0.0-20231116033324-ab055368d286
+	github.com/jayalane/go-lll v0.0.0-20240705211819-06fc7741d960
+	github.com/jayalane/go-tinyconfig v0.0.0-20240705214247-5466406a70c3
 	github.com/pkg/profile v1.7.0
 )
 
