@@ -126,7 +126,7 @@ func NewGlobal(defaultConfig string, doProf bool) Global {
 }
 
 // NewLogger returns a new logger that is from github.com/jayalane/go-lll.
-func (g Global) NewLogger(name string, defaultLogLevel string) *lll.Lll {
+func (g *Global) NewLogger(name string, defaultLogLevel string) *lll.Lll {
 	ml := lll.Init(name, defaultLogLevel)
 
 	return ml
