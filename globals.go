@@ -34,7 +34,6 @@ type Global struct {
 func (g *Global) updateCfg(newConfig config.Config) {
 	st := (*unsafe.Pointer)(unsafe.Pointer(&g.Cfg))
 	atomic.StorePointer(st, unsafe.Pointer(&newConfig))
-	// g.Cfg = &newConfig
 	g.Ml.SetLevel((*g.Cfg)["debugLevel"].StrVal)
 	fmt.Println("Got level", g.Ml.GetLevel())
 }
@@ -78,7 +77,9 @@ func NewGlobal(defaultConfig string, doProf bool) Global {
 	if len(defaultConfig) > 0 {
 		if len(os.Args) > 1 && os.Args[1] == "--dumpConfig" {
 			fmt.Println("logStdout = false\n" + defaultConfig)
-			p.Stop()
+			if p != nil {
+				p.Stop()
+			}
 			os.Exit(0) //nolint:gocritic
 		}
 		// still config
