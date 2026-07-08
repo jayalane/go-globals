@@ -58,6 +58,16 @@ type stopper interface {
 	Stop()
 }
 
+func handleDumpConfig(config string, p stopper) {
+	fmt.Println("logStdout = false\n" + config)
+
+	if p != nil {
+		p.Stop()
+	}
+
+	os.Exit(0) //nolint:gocritic
+}
+
 // NewGlobal sets up the logger, the profiler, if doProf is true, and
 // reads the config.
 func NewGlobal(defaultConfig string, doProf bool) Global {
@@ -76,11 +86,7 @@ func NewGlobal(defaultConfig string, doProf bool) Global {
 	// config
 	if len(defaultConfig) > 0 {
 		if len(os.Args) > 1 && os.Args[1] == "--dumpConfig" {
-			fmt.Println("logStdout = false\n" + defaultConfig)
-			if p != nil {
-				p.Stop()
-			}
-			os.Exit(0) //nolint:gocritic
+			handleDumpConfig(defaultConfig, p)
 		}
 		// still config
 		res.Cfg = nil
